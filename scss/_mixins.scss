@@ -1,0 +1,157 @@
+@use 'variables';
+
+@mixin desktop-view($width, $height: unset, $fontSize: unset) {
+    @media (min-width: 1440px) {
+        width: $width;
+        height: $height;
+        font-size: $fontSize;
+    }
+};
+
+
+@mixin button-hover($bg-color) {
+    &:hover {
+        background-color: $bg-color;
+        color: variables.$white;
+        cursor: pointer;
+    }
+};
+
+@mixin section-statistics-desktop{
+    @media screen and(min-width: 1440px) {
+        flex-direction: row;
+        justify-content: space-around;
+        height: 800px;
+        margin-bottom: 0px;
+    }
+};
+
+@mixin banner($url-top, $url-bottom){
+    background: {
+        image: url($url-top), url($url-bottom);
+        repeat: no-repeat, no-repeat;
+        position-y: top, bottom;
+    };
+}
+
+@mixin banner-desktop($url-top, $url-bottom){
+    @media screen and(min-width: 1440px) { 
+        background-image: url($url-top), url($url-bottom);
+    }
+}
+
+@mixin flexSection-desktop($direction: unset) {
+    @media screen and(min-width: 1440px) {
+        flex-direction: row;
+        justify-content: space-around;
+        flex-direction: $direction;
+        // border: 1px solid blue;
+        height: 800px;
+        margin-bottom: 0px;
+        width: 100%;
+
+        .image-container {
+            &__illustration {
+                width: 527px;
+                margin-bottom: 78px;
+            }
+        }
+    
+        .description {
+            &__title {
+                font-family: variables.$Headings-font;
+                font-size: 2.3em;
+                text-align: left;
+                margin-bottom: 12px;
+            }
+    
+            &__content {
+                text-align: left;
+                font-size: 1em;
+                width: 495px;
+            }
+        }
+        @content;
+    }
+};
+
+@mixin flexSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 180px 0 ;
+    // margin-bottom: 245px;
+    
+
+    .image-container {
+        &__illustration {
+            width: 246px;
+            margin-bottom: 78px;
+        }
+    }
+
+    .description {
+        &__title {
+            font-family: variables.$Headings-font;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        &__content {
+            text-align: center;
+            font-size: 0.9em;
+            width: 330px;
+        }
+    }
+};
+
+@mixin button($bg-color, $br-color, $font-color, $width, $height, $center) {
+    background-color: $bg-color;
+    border: none;
+    border: 1px solid $br-color;
+    border-radius: 50px;
+    color: $font-color;
+    font-weight: 700;
+    display: block;
+    width: $width;
+    height: $height;
+    @if $center == true{
+        margin: 0 auto;
+    } 
+};
+
+@mixin statistics($logo) {
+    margin-bottom: 98px;
+    // border: 1px solid red;
+
+    &__logo {
+        width: $logo;
+    }
+
+    &__statistics {
+        font-size: 4em;
+    }
+
+    &__description {
+        font-size: 0.8em;
+        text-align: center;
+        @content
+    }
+};
+
+@mixin statistics-desktop($width, $font-size-s, $font-size-d ){
+    @media (min-width: 1440px) {
+        &__logo {
+            width: $width;
+        }
+
+        &__statistics {
+            font-size: $font-size-s;
+        }
+
+        &__description {
+            font-size: $font-size-d ;
+        }
+    }
+}
